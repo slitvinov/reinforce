@@ -16,7 +16,19 @@ def policy_mean(theta, state):
 
 def logpi(theta, action, state):
     sigma = jax.numpy.exp(theta[0])
-    mu = theta[1] + state @ theta[2:]
+    mu = theta[1] + state @ theta[2:]/home/lisergey/.local/lib/python3.10/site-packages/gymnasium/core.py:311: UserWarning: WARN: env.seed to get variables from other wrappers is deprecated and will be removed in v1.0, to get this variable you can do `env.unwrapped.seed` for environment variables or `env.get_wrapper_attr('seed')` that will search the reminding wrappers.
+  logger.warn(
+Traceback (most recent call last):
+  File "/home/lisergey/reinforce/0.py", line 36, in <module>
+    env.seed(12345)
+  File "/home/lisergey/.local/lib/python3.10/site-packages/gymnasium/core.py", line 315, in __getattr__
+    return getattr(self.env, name)
+  File "/home/lisergey/.local/lib/python3.10/site-packages/gymnasium/core.py", line 315, in __getattr__
+    return getattr(self.env, name)
+  File "/home/lisergey/.local/lib/python3.10/site-packages/gymnasium/core.py", line 315, in __getattr__
+    return getattr(self.env, name)
+AttributeError: 'CartPoleEnv' object has no attribute 'seed'
+
     return jax.scipy.stats.norm.logpdf(action, mu, sigma)
 
 def episod():
