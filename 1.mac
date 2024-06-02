@@ -1,0 +1,8 @@
+T: 3;
+G0: sum(g^(k - t - 1) * R[k], k, t + 1, T + 1), t = 0;
+G1: sum(g^(k - t - 1) * R[k], k, t + 1, T + 1), t = 1;
+G2: sum(g^(k - t - 1) * R[k], k, t + 1, T + 1), t = 2;
+
+expand(G1 - (G0 - R[1]) / g);
+expand(G2 - (G1 - R[2]) / g);
+
