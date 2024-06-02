@@ -1,0 +1,10 @@
+load("distrib");
+dl: log(pdf_normal(action, mu, sigma));
+
+gradef(sigma, t0, 1);
+depends(mu, [t1, t2]);
+depends(sigma, t0);
+
+diff(dl, t0), expand, factor;
+diff(dl, t1), expand, factor;
+diff(dl, t2), expand, factor;
