@@ -61,11 +61,14 @@ theta = jax.numpy.zeros(n_states + 2, dtype=float)
 alpha = 0.001
 n_episod = 0
 while n_episod < 1000:
-    if n_episod % 100 == 0:
-        Return = statistics.fmean(
+    if n_episod % 10 == 0:
+        Returns = [
             statistics.fsum(R.values())
-            for S, A, R in (episod(policy_mean) for i in range(100)))
-        print("% 8d %8.2f %s" % (n_episod, Return, theta))
+            for S, A, R in (episod(policy_mean) for i in range(100))
+        ]
+        mean = statistics.fmean(Returns)
+        std = statistics.stdev(Returns)
+        print(f"{n_episod: 8d}: {mean:6.3f} +/- {std:6.3f} {theta}")
         if n_episod >= 1000:
             break
     S, A, R = episod(policy_random)
